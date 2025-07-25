@@ -41,12 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="stock in stocks" :key="stock._id" class="hover:bg-gray-50">
-                        <td class="p-2 border-b">{{ stock.name }}</td>
-                        <td class="p-2 border-b">{{ stock.quantity }}</td>
-                        <td class="p-2 border-b">{{ stock.price.toFixed(2) }}</td>
-                        <td class="p-2 border-b text-gray-500">{{ stock.byUser.name }}</td>
-                    </tr>
+                    <StockItem v-for="stock in stocks" :key="stock._id" :stock="stock" />
                 </tbody>
             </table>
         </div>
@@ -55,9 +50,13 @@
 
 <script>
 import axios from 'axios'
+import StockItem from '@/components/StockItem.vue'
 
 export default {
     name: 'StocksView',
+    components: {
+        StockItem
+    },
     data() {
         return {
             stocks: [],

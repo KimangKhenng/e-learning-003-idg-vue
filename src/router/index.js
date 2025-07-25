@@ -3,7 +3,8 @@ import Courses from '@/views/Courses.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import Home from '@/views/Home.vue'
 import SignUp from '@/views/SignUp.vue'
-import Stocks from '@/views/Stocks.vue'
+import StockDetail from '@/views/Stock/StockDetail.vue'
+import Stocks from '@/views/Stock/Stocks.vue'
 import Teachers from '@/views/Teachers.vue'
 import Users from '@/views/Users.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -34,6 +35,7 @@ const router = createRouter({
         { path: 'users', component: Users, beforeEnter: checkAuth },
         { path: 'teachers', component: Teachers, beforeEnter: checkAuth },
         { path: 'stocks', component: Stocks, beforeEnter: checkAuth },
+        { path: 'stocks/:id', component: StockDetail, beforeEnter: checkAuth },
         { path: 'courses', component: Courses, beforeEnter: checkAuth },
       ]
     }
