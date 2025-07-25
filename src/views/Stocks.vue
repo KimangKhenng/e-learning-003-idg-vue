@@ -80,9 +80,13 @@ export default {
         async fetchStocks() {
             this.loading = true
             this.error = null
+            const token = localStorage.getItem('token')
             try {
                 const { data } = await axios.get('http://localhost:3000/api/stocks', {
-                    params: { page: this.page, limit: this.limit, populate: 'byUser' }
+                    params: { page: this.page, limit: this.limit, populate: 'byUser' },
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 })
 
                 this.stocks = data.docs

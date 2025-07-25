@@ -84,9 +84,13 @@ export default {
     },
     methods: {
         async fetchUsers() {
+            const token = localStorage.getItem('token')
             try {
                 const { data } = await axios.get('http://localhost:3000/api/users', {
-                    params: { page: this.page, limit: this.limit }
+                    params: { page: this.page, limit: this.limit },
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 })
 
                 this.users = data.docs

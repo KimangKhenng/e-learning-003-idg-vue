@@ -73,9 +73,13 @@ export default {
     },
     methods: {
         async fetchTeachers() {
+            const token = localStorage.getItem('token')
             try {
                 const { data } = await axios.get('http://localhost:3000/api/teachers', {
-                    params: { page: this.page, limit: this.limit }
+                    params: { page: this.page, limit: this.limit },
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 })
 
                 this.teachers = data.docs

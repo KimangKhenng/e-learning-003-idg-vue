@@ -86,9 +86,13 @@ export default {
         async fetchCourses() {
             this.loading = true
             this.error = null
+            const token = localStorage.getItem('token')
             try {
                 const res = await axios.get('http://localhost:3000/api/courses', {
-                    params: { page: this.page, limit: this.limit, populate: 'taughtBy' }
+                    params: { page: this.page, limit: this.limit, populate: 'taughtBy' },
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 })
                 this.courses = res.data.docs
                 this.pagination = {
