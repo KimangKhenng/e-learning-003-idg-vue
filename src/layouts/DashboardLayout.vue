@@ -46,8 +46,7 @@ export default {
             return this.$route.path === route
         },
         handleLogout() {
-            // Simulate logout: clear session and redirect to login
-            // You can clear tokens or localStorage here if needed
+            localStorage.clear()
             this.$router.push('/')
         }
     }

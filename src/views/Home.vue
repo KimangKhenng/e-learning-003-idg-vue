@@ -22,9 +22,16 @@
                         class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:outline-none"
                         required />
                 </div>
+                <router-link to="/sign-up">
+                    <button
+                        class="w-full bg-green-500 text-white py-2 rounded-lg font-semibold hover:from-indigo-600 hover:to-pink-600 transition">
+                        Sign Up
+                    </button>
+                </router-link>
+
 
                 <button type="submit"
-                    class="w-full bg-gradient-to-r from-indigo-500 to-pink-500 text-white py-2 rounded-lg font-semibold hover:from-indigo-600 hover:to-pink-600 transition">
+                    class="mt-5 w-full bg-gradient-to-r from-indigo-500 to-pink-500 text-white py-2 rounded-lg font-semibold hover:from-indigo-600 hover:to-pink-600 transition">
                     Login
                 </button>
 
@@ -55,13 +62,13 @@ export default {
             // } else {
             //     this.error = 'Invalid username or password'
             // }
-            const response = await axios.post('http://localhost:3000/api/auth', {
+            const response = await axios.post('http://localhost:3000/api/auth/login', {
                 username: this.username,
                 password: this.password
             })
-            // console.log(response.data)
-            localStorage.setItem('token', response.data.token)
-            if (response.data.token) {
+            console.log(response.data)
+            localStorage.setItem('token', response.data.accessToken)
+            if (response.data.accessToken) {
                 this.$router.push('/dashboard')
             }
         }
